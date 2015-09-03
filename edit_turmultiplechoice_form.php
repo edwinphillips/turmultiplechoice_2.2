@@ -58,6 +58,14 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
                 get_string('answerhowmany', 'qtype_turmultiplechoice'), $menu);
         $mform->setDefault('single', 0);
 
+        // 'Image to display' filemanager
+        $mform->addElement('filemanager', 'questionimage', 'Image to display', null,
+            array('maxfiles' => 1)); // TODO: Use lang string
+
+        // 'Choose soundfile for question' filemanager
+        $mform->addElement('filemanager', 'questionsound', 'Choose soundfile for question', null,
+            array('maxfiles' => 1, 'accepted_types' => array('.mp3'))); // TODO: Use lang string
+
         $question_difficulties = array();
         $question_difficulties[0] = get_string('q_easy1', 'qtype_turmultiplechoice');
         $question_difficulties[1] = get_string('q_easy2', 'qtype_turmultiplechoice');
@@ -146,6 +154,44 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
             $question->qdifficulty = $question->options->qdifficulty;
         }
 
+        if (isset($question->id)) {
+            // Prepare the questionimage filemanager to display files in draft area.
+            $draftitemid = file_get_submitted_draft_itemid('questionimage');
+            file_prepare_draft_area($draftitemid, $this->context->id,
+                    'question', 'questionimage', $question->id);
+            $question->questionimage = $draftitemid;
+
+            // Prepare the questionsound filemanager to display files in draft area.
+            $draftitemid = file_get_submitted_draft_itemid('questionsound');
+            file_prepare_draft_area($draftitemid, $this->context->id,
+                    'question', 'questionsound', $question->id);
+            $question->questionsound = $draftitemid;
+        }
+
+        return $question;
+    }
+
+    protected function data_preprocessing_answers($question, $withanswerfiles = false) {
+
+        parent::data_preprocessing_answers($question, $withanswerfiles);
+
+        $key = 0;
+        foreach ($question->options->answers as $answer) {
+
+            // Prepare the answersound filemanager to display files in draft area.
+            $draftitemid = file_get_submitted_draft_itemid('answersound['.$key.']');
+            file_prepare_draft_area($draftitemid, $this->context->id,
+                    'question', 'answersound', $answer->id);
+            $question->answersound[$key] = $draftitemid;
+
+            // Prepare the feedbacksound filemanager to display files in draft area.
+            $draftitemid = file_get_submitted_draft_itemid('feedbacksound['.$key.']');
+            file_prepare_draft_area($draftitemid, $this->context->id,
+                    'question', 'feedbacksound', $answer->id);
+            $question->feedbacksound[$key] = $draftitemid;
+
+            $key++;
+        }
         return $question;
     }
 

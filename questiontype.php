@@ -84,10 +84,19 @@ class qtype_turmultiplechoice extends question_type {
             $answer->answer = $this->import_or_save_files($answerdata,
                     $context, 'question', 'answer', $answer->id);
             $answer->answerformat = $answerdata['format'];
+
+            // Save answer 'answersound'
+            file_save_draft_area_files($question->answersound[$key], $context->id,
+                    'question', 'answersound', $answer->id, $this->fileoptions);
+
             $answer->fraction = $question->fraction[$key];
             $answer->feedback = $this->import_or_save_files($question->feedback[$key],
                     $context, 'question', 'answerfeedback', $answer->id);
             $answer->feedbackformat = $question->feedback[$key]['format'];
+
+            // Save answer 'feedbacksound'
+            file_save_draft_area_files($question->feedbacksound[$key], $context->id,
+                    'question', 'feedbacksound', $answer->id, $this->fileoptions);
 
             $DB->update_record('question_answers', $answer);
             $answers[] = $answer->id;
@@ -128,6 +137,14 @@ class qtype_turmultiplechoice extends question_type {
         $DB->update_record('question_turmultiplechoice', $options);
 
         $this->save_hints($question, true);
+
+        // Save question 'questionimage'
+        file_save_draft_area_files($question->questionimage, $context->id,
+                'question', 'questionimage', $question->id, $this->fileoptions);
+
+        // Save question 'questionsound'
+        file_save_draft_area_files($question->questionsound, $context->id,
+                'question', 'questionsound', $question->id, $this->fileoptions);
 
         // Perform sanity checks on fractional grades
         if ($options->single) {
