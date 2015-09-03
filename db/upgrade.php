@@ -124,15 +124,33 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
     // Moodle v2.2.0 release upgrade line
     // Put any upgrade step following this
 
-    // Sort out all the files and ting
+    // Add new autoplay field. If this is true, autoplay the audio files
+    // on question load
     if ($oldversion < 2015090300) {
+
+        // Define field autoplay to be added to question_turmultiplechoice
+        $table = new xmldb_table('question_turmultiplechoice');
+        $field = new xmldb_field('autoplay', XMLDB_TYPE_INTEGER, '2', null,
+                XMLDB_NOTNULL, null, '0', 'shownumcorrect');
+
+        // Launch add field autoplay
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // turmultiplechoice savepoint reached
+        upgrade_plugin_savepoint(true, 2015090300, 'qtype', 'turmultiplechoice');
+    }
+
+    // Sort out all the files and ting
+    if ($oldversion < 2015090301) {
 
         // need to update the config.php from the 1.9
         // to get the paths for the audio etc
 
 
         // turmultiplechoice savepoint reached
-        upgrade_plugin_savepoint(true, 2015090300, 'qtype', 'turmultiplechoice');
+        upgrade_plugin_savepoint(true, 2015090301, 'qtype', 'turmultiplechoice');
     }
 
     return true;

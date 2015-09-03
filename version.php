@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_turmultiplechoice';
-$plugin->version   = 2015090300;
+$plugin->version   = 2015090301;
 
 $plugin->requires  = 2011102700;
 

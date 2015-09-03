@@ -43,6 +43,7 @@ abstract class qtype_turmultiplechoice_base extends question_graded_automaticall
 
     public $shuffleanswers;
     public $qdifficulty;
+    public $autoplay;
     public $layout = self::LAYOUT_VERTICAL;
 
     public $correctfeedback;

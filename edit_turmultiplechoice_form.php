@@ -40,21 +40,38 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
      * @param object $mform the form being built.
      */
     protected function definition_inner($mform) {
+
+        $mform->addElement('advcheckbox', 'autoplay',
+                get_string('autoplay', 'qtype_turmultiplechoice'), null, null, array(0, 1));
+        $mform->addHelpButton('autoplay', 'autoplay', 'qtype_turmultiplechoice');
+        $mform->setDefault('autoplay', 0);
+
         $menu = array(
             get_string('answersingleno', 'qtype_turmultiplechoice'),
             get_string('answersingleyes', 'qtype_turmultiplechoice'),
         );
         $mform->addElement('select', 'single',
                 get_string('answerhowmany', 'qtype_turmultiplechoice'), $menu);
-        $mform->setDefault('single', 1);
+        $mform->setDefault('single', 0);
 
-        $mform->addElement('advcheckbox', 'shuffleanswers',
-                get_string('shuffleanswers', 'qtype_turmultiplechoice'), null, null, array(0, 1));
-        $mform->addHelpButton('shuffleanswers', 'shuffleanswers', 'qtype_turmultiplechoice');
-        $mform->setDefault('shuffleanswers', 1);
+        $question_difficulties = array();
+        $question_difficulties[0] = get_string('q_easy1', 'qtype_turmultiplechoice');
+        $question_difficulties[1] = get_string('q_easy2', 'qtype_turmultiplechoice');
+        $question_difficulties[2] = get_string('q_easy3', 'qtype_turmultiplechoice');
+        $question_difficulties[3] = get_string('q_medium1', 'qtype_turmultiplechoice');
+        $question_difficulties[4] = get_string('q_medium2', 'qtype_turmultiplechoice');
+        $question_difficulties[5] = get_string('q_medium3', 'qtype_turmultiplechoice');
+        $question_difficulties[6] = get_string('q_hard1', 'qtype_turmultiplechoice');
+        $question_difficulties[7] = get_string('q_hard2', 'qtype_turmultiplechoice');
+        $question_difficulties[8] = get_string('q_hard3', 'qtype_turmultiplechoice');
+        $mform->addElement('select', 'qdifficulty',
+                get_string('qdifficulty', 'qtype_turmultiplechoice'), $question_difficulties);
+        $mform->setDefault('qdifficulty', 0);
+
+        $mform->addElement('hidden', 'shuffleanswers', 1);
 
         $this->add_per_answer_fields($mform, get_string('choiceno', 'qtype_turmultiplechoice', '{no}'),
-                question_bank::fraction_options_full(), max(5, QUESTION_NUMANS_START));
+                question_bank::fraction_options_full(), max(4, QUESTION_NUMANS_START));
 
         $this->add_combined_feedback_fields(true);
         $mform->disabledIf('shownumcorrect', 'single', 'eq', 1);

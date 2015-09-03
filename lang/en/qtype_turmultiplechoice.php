@@ -27,6 +27,10 @@ $string['addmorechoiceblanks'] = 'Blanks for {no} more choices';
 $string['answerhowmany'] = 'One or multiple answers?';
 $string['answersingleno'] = 'Multiple answers allowed';
 $string['answersingleyes'] = 'One answer only';
+
+$string['autoplay'] = 'Autoplay';
+$string['autoplay_help'] = 'Automatically play the answer and question audio clips in sequence on question load';
+
 $string['choiceno'] = 'Choice {$a}';
 $string['choices'] = 'Available choices';
 $string['clozeaid'] = 'Enter missing word';
@@ -39,6 +43,11 @@ $string['feedback'] = 'Feedback';
 $string['fillouttwochoices'] = 'You must fill out at least two choices. Choices left blank will not be used.';
 $string['fractionsaddwrong'] = 'The positive grades you have chosen do not add up to 100%<br />Instead, they add up to {$a}%<br />Do you want to go back and fix this question?';
 $string['fractionsnomax'] = 'One of the choices should be 100%, so that it is<br />possible to get a full grade for this question.<br />Do you want to go back and fix this question?';
+
+
+
+$string['qdifficulty'] = 'Question difficulty';
+
 $string['incorrectfeedback'] = 'For any incorrect response';
 $string['notenoughanswers'] = 'This type of question requires at least {$a} choices';
 $string['overallcorrectfeedback'] = 'Feedback for any correct response';
@@ -54,6 +63,19 @@ $string['pluginname_link'] = 'question/type/turmultiplechoice';
 $string['pluginnameadding'] = 'Adding a TUR Multiple choice question';
 $string['pluginnameediting'] = 'Editing a TUR Multiple choice question';
 $string['pluginnamesummary'] = 'Allows the selection of a single or multiple responses from a pre-defined list.';
+
+$string['q_easy1'] = 'Sværhedsgrad 1';
+$string['q_easy2'] = 'Sværhedsgrad 2';
+$string['q_easy3'] = 'Sværhedsgrad 3';
+$string['q_medium1'] = 'Sværhedsgrad 4';
+$string['q_medium2'] = 'Sværhedsgrad 5';
+$string['q_medium3'] = 'Sværhedsgrad 6';
+$string['q_hard1'] = 'Sværhedsgrad 7';
+$string['q_hard2'] = 'Sværhedsgrad 8';
+$string['q_hard3'] = 'Sværhedsgrad 9';
+
+
+
 $string['selectmulti'] = 'Select one or more:';
 $string['selectone'] = 'Select one:';
 $string['shuffleanswers'] = 'Shuffle the choices?';
