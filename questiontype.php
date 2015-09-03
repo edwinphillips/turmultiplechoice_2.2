@@ -86,7 +86,7 @@ class qtype_turmultiplechoice extends question_type {
             $answer->answerformat = $answerdata['format'];
 
             // Save answer 'answersound'
-            file_save_draft_area_files($question->answersound[$key], $context->id,
+            file_save_draft_area_files($question->answersound[$key], 1,
                     'question', 'answersound', $answer->id, $this->fileoptions);
 
             $answer->fraction = $question->fraction[$key];
@@ -95,7 +95,7 @@ class qtype_turmultiplechoice extends question_type {
             $answer->feedbackformat = $question->feedback[$key]['format'];
 
             // Save answer 'feedbacksound'
-            file_save_draft_area_files($question->feedbacksound[$key], $context->id,
+            file_save_draft_area_files($question->feedbacksound[$key], 1,
                     'question', 'feedbacksound', $answer->id, $this->fileoptions);
 
             $DB->update_record('question_answers', $answer);
@@ -139,11 +139,11 @@ class qtype_turmultiplechoice extends question_type {
         $this->save_hints($question, true);
 
         // Save question 'questionimage'
-        file_save_draft_area_files($question->questionimage, $context->id,
+        file_save_draft_area_files($question->questionimage, 1,
                 'question', 'questionimage', $question->id, $this->fileoptions);
 
         // Save question 'questionsound'
-        file_save_draft_area_files($question->questionsound, $context->id,
+        file_save_draft_area_files($question->questionsound, 1,
                 'question', 'questionsound', $question->id, $this->fileoptions);
 
         // Perform sanity checks on fractional grades

@@ -157,13 +157,13 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
         if (isset($question->id)) {
             // Prepare the questionimage filemanager to display files in draft area.
             $draftitemid = file_get_submitted_draft_itemid('questionimage');
-            file_prepare_draft_area($draftitemid, $this->context->id,
+            file_prepare_draft_area($draftitemid, 1,
                     'question', 'questionimage', $question->id);
             $question->questionimage = $draftitemid;
 
             // Prepare the questionsound filemanager to display files in draft area.
             $draftitemid = file_get_submitted_draft_itemid('questionsound');
-            file_prepare_draft_area($draftitemid, $this->context->id,
+            file_prepare_draft_area($draftitemid, 1,
                     'question', 'questionsound', $question->id);
             $question->questionsound = $draftitemid;
         }
@@ -180,13 +180,13 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
 
             // Prepare the answersound filemanager to display files in draft area.
             $draftitemid = file_get_submitted_draft_itemid('answersound['.$key.']');
-            file_prepare_draft_area($draftitemid, $this->context->id,
+            file_prepare_draft_area($draftitemid, 1,
                     'question', 'answersound', $answer->id);
             $question->answersound[$key] = $draftitemid;
 
             // Prepare the feedbacksound filemanager to display files in draft area.
             $draftitemid = file_get_submitted_draft_itemid('feedbacksound['.$key.']');
-            file_prepare_draft_area($draftitemid, $this->context->id,
+            file_prepare_draft_area($draftitemid, 1,
                     'question', 'feedbacksound', $answer->id);
             $question->feedbacksound[$key] = $draftitemid;
 
