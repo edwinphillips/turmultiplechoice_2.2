@@ -142,12 +142,21 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2015090300, 'qtype', 'turmultiplechoice');
     }
 
-    // Sort out all the files and ting
+    // Migrate audio files
     if ($oldversion < 2015090301) {
 
-        // need to update the config.php from the 1.9
-        // to get the paths for the audio etc
+        // TODO: Update the config.php as per the 1.9 version,
+        // so to get the paths for the audio files
 
+        // TODO: migrate questionsound files
+
+        // TODO: migrate questionfeedbacksound files
+
+        // TODO: migrate answersound files
+
+        // TODO: migrate answersoundfeedback files
+
+        // TODO: Drop the mutant columns added for the 1.9 version
 
         // turmultiplechoice savepoint reached
         upgrade_plugin_savepoint(true, 2015090301, 'qtype', 'turmultiplechoice');
