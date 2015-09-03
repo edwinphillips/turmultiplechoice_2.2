@@ -56,7 +56,7 @@ class backup_qtype_turmultiplechoice_plugin extends backup_qtype_plugin {
             'layout', 'answers', 'single', 'shuffleanswers',
             'correctfeedback', 'correctfeedbackformat',
             'partiallycorrectfeedback', 'partiallycorrectfeedbackformat',
-            'incorrectfeedback', 'incorrectfeedbackformat', 'qdifficulty', 'shownumcorrect'));
+            'incorrectfeedback', 'incorrectfeedbackformat', 'qdifficulty', 'shownumcorrect', 'autoplay'));
 
         // Now the own qtype tree
         $pluginwrapper->add_child($turmultiplechoice);

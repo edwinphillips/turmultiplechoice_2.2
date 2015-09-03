@@ -157,12 +157,14 @@ class qtype_turmultiplechoice_attempt_upgrader_test extends question_attempt_upg
                 'incorrectfeedback' => '',
                 'qdifficulty' => '0',
                 'shownumcorrect' => '0',
+                'autoplay' => '0',
             ),
             'hints' => array (
                 1 => (object) array(
                     'hint' => 'First hint',
                     'questionid' => '2',
                     'shownumcorrect' => null,
+                    'autoplay' => '0',
                     'clearwrong' => null,
                     'options' => null,
                     'id' => 1,
@@ -171,6 +173,7 @@ class qtype_turmultiplechoice_attempt_upgrader_test extends question_attempt_upg
                     'hint' => 'Second hint',
                     'questionid' => '2',
                     'shownumcorrect' => null,
+                    'autoplay' => '0',
                     'clearwrong' => null,
                     'options' => null,
                     'id' => 2,

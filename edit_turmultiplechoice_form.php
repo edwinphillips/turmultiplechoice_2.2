@@ -41,6 +41,10 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
      */
     protected function definition_inner($mform) {
 
+        $mform->removeElement('defaultmark');
+        $mform->addElement('hidden', 'defaultmark', '1');
+        $mform->removeElement('generalfeedback');
+
         $mform->addElement('advcheckbox', 'autoplay',
                 get_string('autoplay', 'qtype_turmultiplechoice'), null, null, array(0, 1));
         $mform->addHelpButton('autoplay', 'autoplay', 'qtype_turmultiplechoice');
@@ -75,8 +79,6 @@ class qtype_turmultiplechoice_edit_form extends question_edit_form {
 
         $this->add_combined_feedback_fields(true);
         $mform->disabledIf('shownumcorrect', 'single', 'eq', 1);
-
-        $this->add_interactive_settings(true, true);
     }
 
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
