@@ -1,0 +1,18 @@
+.que.turmultiplechoice .answer .specificfeedback {
+    padding: 0 0.7em;
+    background: #FFF3BF;
+}
+.que.turmultiplechoice .answer .specificfeedback * {
+    display: inline;
+    background: #FFF3BF;
+}
+.que.turmultiplechoice .answer .specificfeedback script {
+    display: none;
+}
+.que.turmultiplechoice .answer div.r0,
+.que.turmultiplechoice .answer div.r1 {
+    padding: 0.3em;
+}
+.que.turmultiplechoice .feedback .rightanswer * {
+    display: inline;
+}
