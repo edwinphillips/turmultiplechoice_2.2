@@ -2,7 +2,7 @@
 
 define('CLI_SCRIPT', 1);
 
-require_once('../../../config.php');
+require_once('../../../../config.php');
 
 $audiofolder = $CFG->dataroot . '/' . $CFG->tursound . '/audio/';
 $imagefolder = $CFG->dataroot . '/' . $CFG->turimage . '/image/';
@@ -11,7 +11,10 @@ $fs = get_file_storage();
 $file_record = array(
     'contextid' => 1,
     'component' => 'question',
-    'filepath' => '/'
+    'filepath' => '/',
+    'userid' => 2,
+    'author' => 'Admin User',
+    'license' => 'allrightsreserved'
 );
 
 $sql = "SELECT q.id, q.image AS questionimage
