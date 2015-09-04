@@ -156,7 +156,7 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
             'filepath' => '/'
         );
 
-        $sql = "SELECT q.id, qtm.questionsound, q.image AS questionimage
+        $sql = "SELECT q.id, qtm.questionsound
                   FROM {question} q
                   JOIN {question_turmultiplechoice} qtm ON qtm.question = q.id
                  WHERE q.qtype = ?";
@@ -173,13 +173,6 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
             $file_record['timecreated'] = time();
             $file_record['timemodified'] = time();
             $fs->create_file_from_pathname($file_record, $audiofolder . $filename);
-
-            $filename = substr($question->questionimage, 6);
-            $file_record['filearea'] = 'questionimage';
-            $file_record['filename'] = $filename;
-            $file_record['timecreated'] = time();
-            $file_record['timemodified'] = time();
-            $fs->create_file_from_pathname($file_record, $imagefolder . $filename);
         }
 
         $sql = "SELECT qa.id, qa.answersound, qa.feedbacksound
