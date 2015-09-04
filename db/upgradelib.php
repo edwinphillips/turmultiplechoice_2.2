@@ -71,7 +71,7 @@ class qtype_turmultiplechoice_qe2_attempt_updater extends question_qtype_attempt
             // Sometimes, a bug means that a state is missing the <order>: bit,
             // We need to deal with that.
             $this->logger->log_assumption("Dealing with missing order information
-                    in attempt at multiple choice question {$this->question->id}");
+                    in attempt at TUR multiple choice question {$this->question->id}");
             return $answer;
         }
     }
@@ -85,7 +85,7 @@ class qtype_turmultiplechoice_qe2_attempt_updater extends question_qtype_attempt
                 } else {
                     $this->logger->log_assumption("Dealing with a place where the
                             student selected a choice that was later deleted for
-                            multiple choice question {$this->question->id}");
+                            TUR multiple choice question {$this->question->id}");
                     return '[CHOICE THAT WAS LATER DELETED]';
                 }
             } else {
@@ -103,7 +103,7 @@ class qtype_turmultiplechoice_qe2_attempt_updater extends question_qtype_attempt
                     } else {
                         $this->logger->log_assumption("Dealing with a place where the
                                 student selected a choice that was later deleted for
-                                multiple choice question {$this->question->id}");
+                                TUR multiple choice question {$this->question->id}");
                         $bits[] = '[CHOICE THAT WAS LATER DELETED]';
                     }
                 }
