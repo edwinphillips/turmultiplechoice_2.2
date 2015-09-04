@@ -201,8 +201,6 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
             $fs->create_file_from_pathname($file_record, $audiofolder . $filename);
         }
 
-        // TODO: Drop the mutant columns added for the 1.9 version
-
         // turmultiplechoice savepoint reached
         upgrade_plugin_savepoint(true, 2013010101, 'qtype', 'turmultiplechoice');
     }
@@ -243,14 +241,14 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
 
         // Find duplicate rows before they break the 2013092304 step below.
         $sql = "SELECT question, MIN(id) AS recordidtokeep
-                  FROM {question_turmultichoice}
+                  FROM {question_turmultiplechoice}
               GROUP BY question
                 HAVING COUNT(1) > 1";
         $problemids = $DB->get_recordset_sql($sql);
 
         foreach ($problemids as $problem) {
             $DB->delete_records_select(
-                    'question_turmultichoice',
+                    'question_turmultiplechoice',
                     'question = ? AND id > ?',
                     array(
                         $problem->question,
@@ -266,10 +264,10 @@ function xmldb_qtype_turmultiplechoice_upgrade($oldversion) {
 
     if ($oldversion < 2013092301) {
 
-        // Define table question_turmultichoice to be renamed to qtype_turmultiplechoice_options.
-        $table = new xmldb_table('question_turmultichoice');
+        // Define table question_turmultiplechoice to be renamed to qtype_turmultiplechoice_options.
+        $table = new xmldb_table('question_turmultiplechoice');
 
-        // Launch rename table for question_turmultichoice.
+        // Launch rename table for question_turmultiplechoice.
         $dbman->rename_table($table, 'qtype_turmultiplechoice_options');
 
         // turmultiplechoice savepoint reached

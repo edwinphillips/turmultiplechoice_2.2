@@ -53,7 +53,7 @@ class backup_qtype_turmultiplechoice_plugin extends backup_qtype_plugin {
 
         // Now create the qtype own structures
         $turmultiplechoice = new backup_nested_element('turmultiplechoice', array('id'), array(
-            'layout', 'answers', 'single', 'shuffleanswers',
+            'layout', 'single', 'shuffleanswers',
             'correctfeedback', 'correctfeedbackformat',
             'partiallycorrectfeedback', 'partiallycorrectfeedbackformat',
             'incorrectfeedback', 'incorrectfeedbackformat', 'qdifficulty', 'shownumcorrect', 'autoplay'));

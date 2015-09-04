@@ -36,8 +36,8 @@ defined('MOODLE_INTERNAL') || die();
 class qtype_turmultiplechoice extends question_type {
     public function get_question_options($question) {
         global $DB, $OUTPUT;
-        $question->options = $DB->get_record('question_turmultiplechoice',
-                array('question' => $question->id), '*', MUST_EXIST);
+        $question->options = $DB->get_record('qtype_turmultiplechoice_options',
+                array('questionid' => $question->id), '*', MUST_EXIST);
         parent::get_question_options($question);
     }
 
@@ -116,14 +116,14 @@ class qtype_turmultiplechoice extends question_type {
             $DB->delete_records('question_answers', array('id' => $oldanswer->id));
         }
 
-        $options = $DB->get_record('question_turmultiplechoice', array('question' => $question->id));
+        $options = $DB->get_record('qtype_turmultiplechoice_options', array('questionid' => $question->id));
         if (!$options) {
             $options = new stdClass();
-            $options->question = $question->id;
+            $options->questionid = $question->id;
             $options->correctfeedback = '';
             $options->partiallycorrectfeedback = '';
             $options->incorrectfeedback = '';
-            $options->id = $DB->insert_record('question_turmultiplechoice', $options);
+            $options->id = $DB->insert_record('qtype_turmultiplechoice_options', $options);
         }
 
         $options->answers = implode(',', $answers);
@@ -134,7 +134,7 @@ class qtype_turmultiplechoice extends question_type {
         $options->qdifficulty = $question->qdifficulty;
         $options->shuffleanswers = $question->shuffleanswers;
         $options = $this->save_combined_feedback_helper($options, $question, $context, true);
-        $DB->update_record('question_turmultiplechoice', $options);
+        $DB->update_record('qtype_turmultiplechoice_options', $options);
 
         $this->save_hints($question, true);
 
@@ -193,7 +193,7 @@ class qtype_turmultiplechoice extends question_type {
 
     public function delete_question($questionid, $contextid) {
         global $DB;
-        $DB->delete_records('question_turmultiplechoice', array('question' => $questionid));
+        $DB->delete_records('qtype_turmultiplechoice_options', array('questionid' => $questionid));
 
         parent::delete_question($questionid, $contextid);
     }
